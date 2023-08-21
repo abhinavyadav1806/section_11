@@ -1,34 +1,68 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import classes from './Navigation.module.css';
 import AuthContext from '../Store/auth-context';
 
-const Navigation = (props) => {
+const Navigation = () => {
+
+  const ctx = useContext(AuthContext);
+
   return (
-    <AuthContext.Consumer>
-      {(ctx) => {
-        return <nav className={classes.nav}>
-        <ul>
-          {ctx.isLoggedIn && (
-            <li>
-              <a href="/">Users</a>
-            </li>
-          )}
-          {ctx.isLoggedIn && (
-            <li>
-              <a href="/">Admin</a>
-            </li>
-          )}
-          {ctx.isLoggedIn && (
-            <li>
-              <button onClick={props.onLogout}>Logout</button>
-            </li>
-          )}
-        </ul>
-      </nav>
-      }}
-    </AuthContext.Consumer>
+    <nav className={classes.nav}>
+      <ul>
+        {ctx.isLoggedIn && (
+          <li>
+            <a href="/">Users</a>
+          </li>
+        )}
+        {ctx.isLoggedIn && (
+          <li>
+            <a href="/">Admin</a>
+          </li>
+        )}
+        {ctx.isLoggedIn && (
+          <li>
+            <button onClick={ctx.onLogOut}>Logout</button>
+          </li>
+        )}
+      </ul>
+    </nav>
   );
 };
 
 export default Navigation;
+
+// import React from 'react';
+
+// import classes from './Navigation.module.css';
+// import AuthContext from '../Store/auth-context';
+
+// const Navigation = (props) => {
+//   return (
+//     <AuthContext.Consumer>
+//       {(ctx) => {
+//         return <nav className={classes.nav}>
+//         <ul>
+//           {ctx.isLoggedIn && (
+//             <li>
+//               <a href="/">Users</a>
+//             </li>
+//           )}
+//           {ctx.isLoggedIn && (
+//             <li>
+//               <a href="/">Admin</a>
+//             </li>
+//           )}
+//           {ctx.isLoggedIn && (
+//             <li>
+//               <button onClick={props.onLogout}>Logout</button>
+//             </li>
+//           )}
+//         </ul>
+//       </nav>
+//       }}
+//     </AuthContext.Consumer>
+//   );
+// };
+
+// export default Navigation;
